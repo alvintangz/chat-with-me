@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+langserve = {extras = ["all"], version = "*"}
+openai = "*"
+langchain-openai = "*"
+faiss-cpu = "*"
+markdown = "*"
+unstructured = "*"
+redis = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
+
+[scripts]
+# Not to be run in production - should use gunicorn on top
+serve-dev = "uvicorn --log-level=debug --reload --port=3001 app.main:app"
