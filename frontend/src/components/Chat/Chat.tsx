@@ -127,7 +127,7 @@ const Chat = ({ sessionId }: ChatProps) => {
                             Made with <FontAwesomeIcon icon={faMugHot} /> in
                             Toronto,{" "}
                             <FontAwesomeIcon icon={faCanadianMapleLeaf} /> using{" "}
-                            {import.meta.env.VITE_MODEL_USED} with LangChain.
+                            {import.meta.env.VITE_MODEL_USED}.
                         </p>
                     </div>
                 </div>
