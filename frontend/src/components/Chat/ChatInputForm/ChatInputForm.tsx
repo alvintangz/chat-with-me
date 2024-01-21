@@ -1,6 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpLong } from "@fortawesome/free-solid-svg-icons";
-import { ChangeEvent, FormEvent, KeyboardEventHandler, useEffect, useRef } from "react";
+import {
+    ChangeEvent,
+    FormEvent,
+    KeyboardEventHandler,
+    useEffect,
+    useRef,
+} from "react";
 import autosize from "autosize";
 
 interface ChatInputFormProps {
@@ -33,8 +39,11 @@ const ChatInputForm = ({
         }
     }, [humanInput]);
 
-    const onTextareaKeyDown: KeyboardEventHandler<HTMLTextAreaElement> = (event) => {
+    const onTextareaKeyDown: KeyboardEventHandler<HTMLTextAreaElement> = (
+        event,
+    ) => {
         if (event.key === "Enter" && !event.shiftKey) {
+            event.preventDefault();
             onHumanInputSubmit();
         }
     };
@@ -52,7 +61,7 @@ const ChatInputForm = ({
                     onChange={onHumanInputChange}
                     onKeyDown={onTextareaKeyDown}
                     placeholder="Send a message."
-                    className="px-3 py-2 rounded-lg border-quinary border-2 w-full text-tertiary resize-none mr-2 max-h-48 !overflow-x-hidden"
+                    className="px-3 py-2 rounded-lg border-quinary border-2 w-full text-tertiary resize-none mr-2 max-h-40 !overflow-x-hidden"
                 ></textarea>
                 <button
                     type="submit"
