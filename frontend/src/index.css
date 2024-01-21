@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        font-family: "Rubik", "Source Sans Pro", "Arial", sans-serif;
+    }
+
+    html,
+    body {
+        @apply bg-tertiary;
+        height: 100%;
+        width: 100%;
+    }
+
+    /* custom scrollbar maybe */
+    body::-webkit-scrollbar {
+        display: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-bold;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--tw-quinary);
+}
