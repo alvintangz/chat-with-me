@@ -92,21 +92,27 @@ const Chat = ({ sessionId }: ChatProps) => {
                     />
                 ) : (
                     <div className="overflow-y-auto">
-                        {messages.map((message, index) => (
-                            <Message
-                                key={index}
-                                type={message.type}
-                                content={message.content}
-                            />
-                        ))}
-                        {streaming && (
-                            <Message
-                                type={MessageType.AI}
-                                content={streamedMessageChunks.join("")}
-                                showTypingIndicator
-                            />
-                        )}
-                        {error && <ErrorCard />}
+                        <h3 className="text-lg mb-5 text-quinary">
+                            <span className="font-medium">You're now talking to</span> Alvin
+                            <sup className="font-normal">(AI)</sup>
+                        </h3>
+                        <div className="mr-4">
+                            {messages.map((message, index) => (
+                                <Message
+                                    key={index}
+                                    type={message.type}
+                                    content={message.content}
+                                />
+                            ))}
+                            {streaming && (
+                                <Message
+                                    type={MessageType.AI}
+                                    content={streamedMessageChunks.join("")}
+                                    showTypingIndicator
+                                />
+                            )}
+                            {error && <ErrorCard />}
+                        </div>
                     </div>
                 )}
                 <div className="py-6">

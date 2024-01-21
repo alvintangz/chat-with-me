@@ -9,18 +9,30 @@ const IntroductionCard = ({
 }: IntroductionCardProps) => {
     return (
         <div className="bg-quinary text-tertiary w-full p-8 rounded-md border border-primary">
-            <h3 className="text-lg mb-2">
-                Hey, I'm Alvin<sup className="font-semibold">(Bot)</sup>
+            <h3 className="text-lg mb-4 text-center">
+                Hey, I'm Alvin<sup className="font-semibold">(AI)</sup>
             </h3>
-            <p className="mb-1">
+            <video
+                controls={false}
+                autoPlay
+                muted
+                loop
+                className="w-96 mx-auto rounded-md pb-5"
+            >
+                <source src="/greeting.mp4" type="video/mp4" />
+            </video>
+            <p className="text-center text-sm font-semibold">
                 I'm a bot designed to chat like my creator,{" "}
                 <a href="https://alvintang.me" target="_blank">
                     Alvin
                 </a>
-                . I can answer basic questions about him and his work
-                experience!
+                .
             </p>
-            <p>
+            <p className="text-center text-sm">
+                I can answer basic questions about him and his work experience!
+            </p>
+
+            <p className="border-t border-tertiary pt-5 mt-4">
                 You can start a conversation here or try the following examples:
             </p>
             <ul className="list-disc list-inside ml-3 mt-1 font-medium">

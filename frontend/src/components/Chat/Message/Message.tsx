@@ -16,7 +16,7 @@ const Message = ({
     const heading =
         type === MessageType.AI ? (
             <>
-                Alvin <sup className="font-normal">(Bot)</sup>
+                Alvin <sup className="font-normal">(AI)</sup>
             </>
         ) : (
             <>
