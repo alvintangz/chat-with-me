@@ -3,7 +3,7 @@ import { faMugHot } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IntroductionCard from "./IntroductionCard/IntroductionCard";
 import { faCanadianMapleLeaf } from "@fortawesome/free-brands-svg-icons";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import Message from "./Message/Message";
 import MessageType from "../../enums/MessageType";
 import ErrorCard from "./ErrorCard/ErrorCard";
@@ -17,6 +17,7 @@ const Chat = ({ sessionId }: ChatProps) => {
     const chain = new RemoteRunnable({
         url: import.meta.env.VITE_RUNNABLE_CHAT_URL,
     });
+    const messagesContainerRef = useRef<HTMLTextAreaElement | null>(null);
     const [humanInput, setHumanInput] = useState<string>("");
     const [messages, setMessages] = useState<
         {
@@ -30,6 +31,14 @@ const Chat = ({ sessionId }: ChatProps) => {
         string[]
     >([]);
     const showIntroductionCard = messages.length === 0;
+
+    useEffect(() => {
+        // Scroll to the bottom when messages are updated
+        if (messagesContainerRef?.current) {
+            messagesContainerRef.current.scrollTop =
+                messagesContainerRef.current.scrollHeight;
+        }
+    }, [messages]);
 
     const onExampleSelected = (example: string) => {
         setHumanInput(example);
@@ -90,9 +99,12 @@ const Chat = ({ sessionId }: ChatProps) => {
                         onExampleSelected={onExampleSelected}
                     />
                 ) : (
-                    <div className="overflow-y-auto">
+                    <div className="overflow-y-auto" ref={messagesContainerRef}>
                         <h3 className="text-lg mb-5 text-quinary">
-                            <span className="font-medium">You're now talking to</span> Alvin
+                            <span className="font-medium">
+                                You're now talking to
+                            </span>{" "}
+                            Alvin
                             <sup className="font-normal">(AI)</sup>
                         </h3>
                         <div className="mr-4">
@@ -123,7 +135,8 @@ const Chat = ({ sessionId }: ChatProps) => {
                     />
                     <div className="text-xs text-quinary text-center mt-4">
                         <p>
-                            Responses from Alvin<sup>(AI)</sup> are limited to the data provided to the LLM
+                            Responses from Alvin<sup>(AI)</sup> are limited to
+                            the data provided to the LLM
                         </p>
                         <p className="font-medium">
                             Made with <FontAwesomeIcon icon={faMugHot} /> in
