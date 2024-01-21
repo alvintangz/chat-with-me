@@ -54,4 +54,5 @@ add_routes(
         input_messages_key="human_input",
         history_messages_key="history"
     ).with_types(input_type=schemas.InputChat),
+    path=config.CHAT_BASE_PATH,
 )

@@ -5,7 +5,11 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 
 # CORS
 
-FRONTEND_BASE_URL = os.getenv("FRONTEND_BASE_URL", "http://localhost:3001")
+FRONTEND_BASE_URL = os.getenv("FRONTEND_BASE_URL", "http://localhost:3000")
+
+# Paths
+
+CHAT_BASE_PATH = os.getenv("CHAT_PATH", '/chat')
 
 # Project Information
 
