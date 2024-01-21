@@ -39,15 +39,13 @@ const Chat = ({ sessionId }: ChatProps) => {
         setHumanInput(event.target.value);
     };
 
-    const sendHumanInput = async () => {
+    const sendHumanInput = async (humanInput: string) => {
         setStreaming(true);
 
         const stream = await chain.stream(
             { human_input: humanInput },
             { configurable: { session_id: sessionId } },
         );
-        setHumanInput("");
-
         let streamed: string[] = [];
         try {
             for await (const chunk of stream) {
@@ -75,7 +73,8 @@ const Chat = ({ sessionId }: ChatProps) => {
             ...prevMessages,
             { type: MessageType.HUMAN, content: humanInput },
         ]);
-        sendHumanInput();
+        sendHumanInput(humanInput);
+        setHumanInput("");
     };
 
     return (
@@ -115,7 +114,7 @@ const Chat = ({ sessionId }: ChatProps) => {
                         </div>
                     </div>
                 )}
-                <div className="py-6">
+                <div className="py-7">
                     <ChatInputForm
                         humanInput={humanInput}
                         onHumanInputChange={onHumanInputChange}
@@ -124,6 +123,9 @@ const Chat = ({ sessionId }: ChatProps) => {
                     />
                     <div className="text-xs text-quinary text-center mt-4">
                         <p>
+                            Responses from Alvin<sup>(AI)</sup> are limited to the data provided to the LLM
+                        </p>
+                        <p className="font-medium">
                             Made with <FontAwesomeIcon icon={faMugHot} /> in
                             Toronto,{" "}
                             <FontAwesomeIcon icon={faCanadianMapleLeaf} /> using{" "}
