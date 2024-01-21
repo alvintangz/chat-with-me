@@ -1,4 +1,5 @@
-from app import chain, config, schemas, utils
+from app import config, schemas, utils
+from app.chat import chain
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
@@ -52,7 +53,7 @@ add_routes(
         chain.get_chain(),
         get_chat_history,
         input_messages_key="human_input",
-        history_messages_key="history"
+        history_messages_key="chat_history"
     ).with_types(input_type=schemas.InputChat),
     path=config.CHAT_BASE_PATH,
     disabled_endpoints=[
