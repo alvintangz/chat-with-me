@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpLong } from "@fortawesome/free-solid-svg-icons";
-import { ChangeEvent, FormEvent, useEffect, useRef } from "react";
+import { ChangeEvent, FormEvent, KeyboardEventHandler, useEffect, useRef } from "react";
 import autosize from "autosize";
 
 interface ChatInputFormProps {
@@ -33,7 +33,7 @@ const ChatInputForm = ({
         }
     }, [humanInput]);
 
-    const onTextareaKeyDown = (event: KeyboardEvent) => {
+    const onTextareaKeyDown: KeyboardEventHandler<HTMLTextAreaElement> = (event) => {
         if (event.key === "Enter" && !event.shiftKey) {
             onHumanInputSubmit();
         }
