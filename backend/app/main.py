@@ -55,4 +55,12 @@ add_routes(
         history_messages_key="history"
     ).with_types(input_type=schemas.InputChat),
     path=config.CHAT_BASE_PATH,
+    disabled_endpoints=[
+        "playground",
+        "feedback",
+        "input_schema",
+        "config_schema",
+        "output_schema",
+        "config_hashes",
+    ] if not config.DEBUG else []
 )
