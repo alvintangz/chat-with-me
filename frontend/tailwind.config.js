@@ -10,7 +10,7 @@ export default {
             secondary: "#9cafb7", // Pewter Blue
             tertiary: "#3a5a40", // Hunter Green
             quaternary: "#de6b48", // Burnt Sienna
-            quinary: "#dcf4a7", // Yellow Green Crayola
+            quinary: "#dbf5a7", // Yellow Green Crayola
         },
         extend: {
             fontFamily: {
