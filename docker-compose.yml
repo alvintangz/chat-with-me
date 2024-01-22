@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+  redis-db:
+    image: redis
+    container_name: redis-db
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/data
+    networks:
+      - db_network
+  backend:
+    build: ./backend
+    container_name: backend
+    depends_on:
+      - redis-db
+    networks:
+      - nginx_network
+      - db_network
+    env_file:
+      - backend.env
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx.dockerfile
+    volumes:
+      - build_data:/usr/share/nginx/html
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - backend
+    networks:
+      - nginx_network
+
+networks:
+  nginx_network:
+    driver: bridge
+  db_network:
+    driver: bridge
+
+volumes:
+  redis_data:
+  build_data:
