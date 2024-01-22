@@ -17,7 +17,7 @@ const Chat = ({ sessionId }: ChatProps) => {
     const chain = new RemoteRunnable({
         url: import.meta.env.VITE_RUNNABLE_CHAT_URL,
     });
-    const messagesContainerRef = useRef<HTMLTextAreaElement | null>(null);
+    const messagesContainerRef = useRef<HTMLDivElement | null>(null);
     const [humanInput, setHumanInput] = useState<string>("");
     const [messages, setMessages] = useState<
         {
