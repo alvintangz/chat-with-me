@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 interface IntroductionCardProps {
     examples: string[];
     onExampleSelected: (example: string) => void;
@@ -7,12 +9,19 @@ const IntroductionCard = ({
     examples,
     onExampleSelected,
 }: IntroductionCardProps) => {
+    // Muted attribute doesn't get rendered by Vite, so have to manually insert it in on component mount
+    const videoRef = useRef<HTMLVideoElement | null>(null);
+    useEffect(() => {
+        videoRef?.current?.setAttribute("muted", "true");
+    }, []);
+
     return (
         <div className="bg-quinary text-tertiary w-full p-8 rounded-md border border-primary">
             <h3 className="text-lg mb-4 text-center">
                 Hey, I'm Alvin<sup className="font-semibold">(AI)</sup>
             </h3>
             <video
+                ref={videoRef}
                 controls={false}
                 autoPlay
                 muted
