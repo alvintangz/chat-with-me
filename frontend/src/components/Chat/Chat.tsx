@@ -88,7 +88,7 @@ const Chat = ({ sessionId }: ChatProps) => {
 
     return (
         <div className="w-full h-full bg-tertiary">
-            <div className="w-full md:w-[50rem] h-screen flex flex-col justify-between my-0 m-auto px-16 pt-14">
+            <div className="w-full md:w-[50rem] h-screen flex flex-col justify-between my-0 m-auto px-4 sm:px-16 pt-6 sm:pt-14">
                 {showIntroductionCard ? (
                     <IntroductionCard
                         examples={[
@@ -135,14 +135,16 @@ const Chat = ({ sessionId }: ChatProps) => {
                     />
                     <div className="text-xs text-quinary text-center mt-4">
                         <p>
-                            Responses from Alvin<sup>(AI)</sup> are limited to
-                            the data provided to the LLM
+                            Responses from Alvin<sup>(AI)</sup> are limited
+                            <span className="hidden sm:inline">
+                                {" "}to the data provided to the LLM
+                            </span>
                         </p>
                         <p className="font-medium">
                             Made with <FontAwesomeIcon icon={faMugHot} /> in
                             Toronto,{" "}
                             <FontAwesomeIcon icon={faCanadianMapleLeaf} /> using{" "}
-                            {import.meta.env.VITE_MODEL_USED}.
+                            {import.meta.env.VITE_MODEL_USED}
                         </p>
                     </div>
                 </div>

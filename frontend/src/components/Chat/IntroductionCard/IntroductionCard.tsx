@@ -17,6 +17,7 @@ const IntroductionCard = ({
                 autoPlay
                 muted
                 loop
+                playsInline
                 className="w-96 mx-auto rounded-md pb-5"
             >
                 <source src="/greeting.mp4" type="video/mp4" />
@@ -41,12 +42,12 @@ const IntroductionCard = ({
                         className={index === examples.length - 1 ? "" : "mb-1"}
                         key={index}
                     >
-                        <button
+                        <a
                             className="cursor-pointer hover:underline"
                             onClick={() => onExampleSelected(example)}
                         >
                             {example}
-                        </button>
+                        </a>
                     </li>
                 ))}
             </ul>
