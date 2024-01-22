@@ -40,7 +40,7 @@ Please follow the steps in order.
 Add environment variables in `.env`. There are only two environment variables to worry about:
 
 -   `VITE_RUNNABLE_CHAT_URL` - The LangServe Runnable instance. For local development, it's most likely `http://localhost:3001/chat`.
--   `VITE_MODEL_USED` - The model used. It could be `OpenAI GPT-4`.
+-   `VITE_MODEL_USED` - The model used. It could be `OpenAI GPT-3.5`.
 
 ## Build
 
