@@ -31,35 +31,40 @@ const IntroductionCard = ({
             >
                 <source src="/greeting.mp4" type="video/mp4" />
             </video>
-            <p className="text-center text-sm font-semibold">
-                I'm a bot designed to chat like my creator,{" "}
-                <a href="https://alvintang.me" target="_blank">
-                    Alvin
-                </a>
-                .
-            </p>
-            <p className="text-center text-sm">
-                I can answer basic questions about him and his work experience!
-            </p>
-
-            <p className="border-t border-tertiary pt-5 mt-4">
-                You can start a conversation here or try the following examples:
-            </p>
-            <ul className="list-disc list-inside ml-3 mt-1 font-medium">
-                {examples.map((example, index) => (
-                    <li
-                        className={index === examples.length - 1 ? "" : "mb-1"}
-                        key={index}
-                    >
-                        <a
-                            className="cursor-pointer hover:underline"
-                            onClick={() => onExampleSelected(example)}
-                        >
-                            {example}
+            <div className="text-sm">
+                <div className="text-center pb-4">
+                    <p className="font-semibold">
+                        I'm designed to chat like my creator,{" "}
+                        <a href="https://alvintang.me" target="_blank">
+                            Alvin
                         </a>
-                    </li>
-                ))}
-            </ul>
+                        .
+                    </p>
+                    <p>
+                        I can answer basic questions about him and his work experience!
+                    </p>
+                </div>
+                <div className="border-t border-tertiary pt-5">
+                    <p>
+                        You can start a conversation here or try the following examples:
+                    </p>
+                    <ul className="list-disc list-inside ml-3 mt-1 font-medium">
+                        {examples.map((example, index) => (
+                            <li
+                                className={index === examples.length - 1 ? "" : "mb-1"}
+                                key={index}
+                            >
+                                <a
+                                    className="cursor-pointer hover:underline"
+                                    onClick={() => onExampleSelected(example)}
+                                >
+                                    {example}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
         </div>
     );
 };

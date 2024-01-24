@@ -88,7 +88,7 @@ const Chat = ({ sessionId }: ChatProps) => {
 
     return (
         <div className="w-full h-full bg-tertiary">
-            <div className="w-full md:w-[50rem] h-screen flex flex-col justify-between my-0 m-auto px-4 sm:px-16 pt-6 sm:pt-14">
+            <div className="w-full md:w-[40rem] h-full flex flex-col justify-between my-0 m-auto px-4 md:px-1 pt-6 sm:pt-8">
                 {showIntroductionCard ? (
                     <IntroductionCard
                         examples={[
@@ -126,7 +126,7 @@ const Chat = ({ sessionId }: ChatProps) => {
                         </div>
                     </div>
                 )}
-                <div className="py-7">
+                <div className="pt-4 pb-7">
                     <ChatInputForm
                         humanInput={humanInput}
                         onHumanInputChange={onHumanInputChange}

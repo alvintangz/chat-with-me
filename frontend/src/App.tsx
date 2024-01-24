@@ -4,7 +4,7 @@ import Chat from "./components/Chat/Chat";
 
 const App = () => {
     return (
-        <div className="h-screen w-screen">
+        <div className="h-full w-full">
             <Chat sessionId={uuidv4()} />
         </div>
     );
