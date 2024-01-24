@@ -26,6 +26,8 @@ services:
     build:
       context: .
       dockerfile: nginx.dockerfile
+    volumes:
+      - ./frontend/dist:/usr/share/nginx/html
     ports:
       - 80:80
       - 443:443
