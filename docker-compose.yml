@@ -26,8 +26,6 @@ services:
     build:
       context: .
       dockerfile: nginx.dockerfile
-    volumes:
-      - build_data:/usr/share/nginx/html
     ports:
       - 80:80
       - 443:443
@@ -44,4 +42,3 @@ networks:
 
 volumes:
   redis_data:
-  build_data:
