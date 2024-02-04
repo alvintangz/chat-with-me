@@ -1,41 +1,38 @@
 from operator import itemgetter
 
 from app import config
-from app.chat.prompts import ANSWER_PROMPT, REFORUMATE_Q_PROMPT
-from app.chat.vector_store import VECTOR_STORE
+from app.chat.templates import REFORUMATE_Q_PROMPT_TEMPLATE, ANSWER_Q_PROMPT_TEMPLATE
+from app.chat.vector_db import VECTOR_STORE
 
 from langchain_openai import ChatOpenAI
 from langchain.schema import StrOutputParser, runnable
 from langchain_core.runnables import RunnablePassthrough
 
-def get_chain() -> runnable.Runnable:
-    retriever = VECTOR_STORE.as_retriever()
+def _get_chat_chain() -> runnable.Runnable:
     llm = ChatOpenAI(openai_api_key=config.OPENAI_API_KEY, model_name=config.CHAT_OPENAI_MODEL)
-    reformulate_q_chain = (
-        {
-            "context": itemgetter("human_input") | retriever,
-            "human_input": itemgetter("human_input"),
-            "chat_history": itemgetter("chat_history")
-        }   
-        | REFORUMATE_Q_PROMPT
-        | llm
-        | StrOutputParser()
-    )
+    retriever = VECTOR_STORE.as_retriever()
 
-    def reformulate_question_if_exists(input: dict):
-        if input.get("chat_history"):
-            return reformulate_q_chain
-        else:
-            return input.get("human_input")
-
-    return (
+    reformulate_q_chain =  (
         {
-            "context": itemgetter("human_input") | retriever,
-            "human_input": itemgetter("human_input"),
-            "chat_history": itemgetter("chat_history")
+            "chat_history": itemgetter("chat_history"),
+            "question": itemgetter("human_input"),
         }
-        | RunnablePassthrough.assign(context=reformulate_question_if_exists | retriever)
-        | ANSWER_PROMPT
+        | REFORUMATE_Q_PROMPT_TEMPLATE
         | llm
         | StrOutputParser()
     )
+
+    answer_q_chain = (
+        reformulate_q_chain |
+        {
+            "context": retriever,
+            "question": RunnablePassthrough(),
+        }
+        | ANSWER_Q_PROMPT_TEMPLATE
+        | llm
+        | StrOutputParser()
+    )
+
+    return answer_q_chain
+
+CHAT_CHAIN = _get_chat_chain()

@@ -27,7 +27,7 @@ OPENAPI_REDOC_URL = "/docs/redoc"
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 EMBEDDINGS_OPENAI_MODEL = os.getenv("EMBEDDINGS_OPENAI_MODEL", "text-embedding-ada-002")
-CHAT_OPENAI_MODEL = os.getenv("CHAT_OPENAI_MODEL", "gpt-3.5-turbo-1106")
+CHAT_OPENAI_MODEL = os.getenv("CHAT_OPENAI_MODEL", "gpt-3.5-turbo-0125")
 
 # Redis URL
 

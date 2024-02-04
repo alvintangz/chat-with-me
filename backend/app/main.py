@@ -6,6 +6,9 @@ from fastapi.responses import RedirectResponse
 from langchain_community.chat_message_histories import RedisChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langserve import add_routes
+from langchain.globals import set_debug
+
+set_debug(config.DEBUG)
 
 app = FastAPI(
     debug=config.DEBUG,
@@ -50,7 +53,7 @@ def get_chat_history(session_id: str) -> RedisChatMessageHistory:
 add_routes(
     app,
     RunnableWithMessageHistory(
-        chain.get_chain(),
+        chain.CHAT_CHAIN,
         get_chat_history,
         input_messages_key="human_input",
         history_messages_key="chat_history"
