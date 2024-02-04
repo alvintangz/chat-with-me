@@ -67,7 +67,7 @@ const ChatInputForm = ({
                     value={humanInput}
                     onChange={onHumanInputChange}
                     onKeyDown={onTextareaKeyDown}
-                    placeholder="Send a message."
+                    placeholder="Ask a question"
                     className="px-3 py-2 rounded-lg border-quinary border-2 w-full text-tertiary resize-none mr-2 max-h-40 !overflow-x-hidden"
                 ></textarea>
                 <button
